@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Tasks } from './tasks.model';
 import { CreateTaskDto } from './dto/create_tasks.dto';
@@ -158,6 +162,9 @@ export class TasksService {
     await task.destroy();
   }
   async getTasksGroupByResponsiblePerson(userId: number) {
+    if (userId === null || userId === undefined) {
+      throw new BadRequestException('Invalid user ID');
+    }
     const tasksGroupedByResponsiblePerson = await this.taskRepository.findAll({
       where: {
         responsiblePerson: userId,

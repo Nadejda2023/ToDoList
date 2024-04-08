@@ -1,4 +1,4 @@
-import { IsNumber, IsString, Length } from 'class-validator';
+import { IsString, Length } from 'class-validator';
 
 export class UpdateTaskDto {
   @IsString({ message: 'Должно быть строкой' })
@@ -11,12 +11,5 @@ export class UpdateTaskDto {
   readonly createAt: Date;
   lastPutDate: Date;
   readonly status: string;
-  @IsNumber(
-    {},
-    {
-      message:
-        'Должно быть числом - индификатор пользователя ответственного за назначенную задачу',
-    },
-  )
   readonly responsiblePerson: number;
 }

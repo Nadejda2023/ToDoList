@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 
 async function start() {
   const PORT = process.env.PORT || 3001;
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   //app.useGlobalGuards(new JwtAuthGuard());
   //app.useGlobalGuards(new JwtAuthGuard());
   //   const jwtService = app.get(JwtService); // эти три строки рабочий вариант пока отключила!
@@ -14,5 +14,4 @@ async function start() {
 
   await app.listen(PORT, () => console.log(`Server started on port = ${PORT}`));
 }
-
 start();

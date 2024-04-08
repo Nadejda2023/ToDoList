@@ -19,7 +19,7 @@ import { CreateTaskDto } from './dto/create_tasks.dto';
 import { UpdateTaskDto } from './dto/update_task.dto';
 import { UpdateStatusDto } from './dto/update-status-task.dto';
 
-@Controller('tasks')
+@Controller('/tasks')
 export class TasksController {
   constructor(private taskService: TasksService) {}
 
@@ -50,12 +50,8 @@ export class TasksController {
       return await this.taskService.getTasksGroupByDateForUser(userId);
     }
   }
-
-  @Roles('ADMIN')
-  @UseGuards(RolesGuard)
-  @Get('group-by-responsible-person')
-  async getTasksGroupByResponsiblePerson(@Req() req) {
-    const userId = req.user.id;
+  @Get('group-by-responsible-person/:userId')
+  async getTasksGroupByResponsiblePerson(@Param('userId') userId: number) {
     return await this.taskService.getTasksGroupByResponsiblePerson(userId);
   }
 
