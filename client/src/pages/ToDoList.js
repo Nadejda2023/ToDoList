@@ -140,10 +140,9 @@ useEffect(() => {
         {isAdmin && (
           <Button className="mt-3  mx-2" onClick={handleShowAllTasks}>Показать все задачи</Button>
         )}
-        {isAdmin  && (
+        {isAdmin  && ( <>
        <Button Button className="mt-3 mx-2 float-right" onClick={() => { handleModalSubmit(); setFilter('user'); }}>Группировка по ответственным</Button>
        
-)}
    <Form.Group controlId="formResponsibleUserId"  className="mt-3 mx-2 float-right">
         <Form.Label>Введите идентификатор пользователя для поиска задач по ответственному сотруднику:</Form.Label>
         <Form.Control
@@ -154,6 +153,8 @@ useEffect(() => {
           size="sm"
         />
       </Form.Group>
+      </>
+      )}
       </div>
       {isAdmin && (
         <Button
