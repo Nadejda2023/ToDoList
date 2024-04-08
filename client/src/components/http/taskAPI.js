@@ -13,28 +13,26 @@ export const fetchTasks = async () => {
     
 }
 
-export const updateTasks = async () => {
+export const updateTasks = async (formData) => {
     const {data} = await $authHost.put('/tasks/taskId')
     return data
     
 }
 
-export const changeTasks = async () => {
+export const changeTasks = async (status) => {
     const {data} = await $authHost.patch('/tasks/taskId')
     return data
     
 }
 
-export const userTasks = async () => {
-    const {data} = await $authHost.get('/tasks/group-by-responsible-person')
-    return data
-    
+export const fetchTasksByResponsiblePerson = async (userId) => {
+    const { data } = await $authHost.get(`/tasks/group-by-responsible-person/${Number(userId)}`);
+    return data;
 }
 
-export const groupTasks = async () => {
-    const {data} = await $authHost.get('/tasks/group-by-date')
-    return data
-    
+export const fetchTasksByDate = async () => {
+    const { data } = await $authHost.get('/tasks/group-by-date');
+    return data;
 }
 
 export const byTasksId = async () => {

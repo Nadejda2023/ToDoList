@@ -22,6 +22,7 @@ const Auth = observer(() => {
       } else {
         data = await registration(loginOrEmail, password);
       }
+      console.log(data)
       user.setUser(data);
       user.setIsAuth(true);
       history.push(TODOLIST_ROUTE); 
